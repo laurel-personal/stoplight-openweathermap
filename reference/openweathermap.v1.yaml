@@ -1,0 +1,47 @@
+openapi: 3.0.0
+info:
+  title: OpenWeatherMap API
+  version: '2.5'
+  contact:
+    name: Support
+    url: 'https://openweathermap.org/api'
+    email: some_email@gmail.com
+  termsOfService: 'https://openweathermap.org/terms'
+  license:
+    name: CC Attribution-ShareAlike 4.0 (CC BY-SA 4.0)
+    url: 'https://openweathermap.org/price'
+  description: 'Get the current weather, daily forecast for 16 days, and a three-hour-interval forecast for 5 days for your city. Helpful stats, graphics, and this day in history charts are available for your reference. Interactive maps show precipitation, clouds, pressure, wind around your location stations. Data is available in JSON, XML, or HTML format. **Note**: This sample Swagger file covers the `current` endpoint only from the OpenWeatherMap API. <br/><br/> **Note**: All parameters are optional, but you must select at least one parameter. Calling the API by city ID (using the `id` parameter) will provide the most precise location results.'
+servers:
+  - url: 'https://api.openweathermap.org/data/2.5'
+    description: prod
+paths:
+  '/weather/{lon}':
+    get:
+      summary: weather
+      tags:
+        - Weather endpoints
+      responses: {}
+      operationId: get-weather
+      description: Gets weather information of a specific location
+      security:
+        - app_id: []
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: zip
+          description: Provide weather info for a U.S. zip code
+components:
+  schemas: {}
+  securitySchemes:
+    app_id:
+      name: appid
+      type: apiKey
+      in: query
+  parameters:
+    lon:
+      name: lon
+      in: query
+      description: '**Longitude**. *Example: 139*. Longitude coordinate of the location of your interest. Must use with `lat`.'
+      schema:
+        type: string
